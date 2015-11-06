@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
 
-	<title>{ifset title}{include title|striptags} | {/ifset}Nette Web</title>
+		<title>{ifset title}{include title|striptags} | {/ifset}Nette Web</title>
 
-	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
-	<link rel="stylesheet" href="{$basePath}/css/main.css">
-	<link rel="stylesheet" href="{$basePath}/css/bootstrap/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="{$basePath}/js/jquery.cookie.js"></script>
-	<script src="{$basePath}/js/nette.ajax.js"></script>
-	<script src="{$basePath}/js/main.js"></script>
-	<script src="//nette.github.io/resources/js/netteForms.min.js"></script>
-</head>
+		<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+		<link rel="stylesheet" href="{$basePath}/css/main.css">
+		<link rel="stylesheet" href="{$basePath}/css/bootstrap/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="{$basePath}/js/jquery.cookie.js"></script>
+		<script src="{$basePath}/js/nette.ajax.js"></script>
+		<script src="{$basePath}/js/main.js"></script>
+		<script src="//nette.github.io/resources/js/netteForms.min.js"></script>
 
-<body>
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>	
-	
-	{include content}
+		<link href='//nicool.rocks/stuff/tickets/tickets.css' rel='stylesheet'>
+		<script src="//code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="//nicool.rocks/stuff/tickets/tickets.js"></script>
+	</head>
 
-	{block scripts}	
-	{/block}
-</body>
+	<body>
+		<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>	
+
+		{include content}
+
+		<div id='tickets'></div>
+		{block scripts}	
+		{/block}
+	</body>
 </html>
