@@ -14,17 +14,18 @@
 					{/foreach}
 				</div>
 				<div class="row">
-					<a class="col-sm-3 ajax" n:href="Question! $id">
-						<img height="150" src="{$basePath}/img/animals/{$item['img']}">
-					</a>
+					{foreach $options as $option}
+						{first}
+							<a class="col-sm-3 ajax img-link" n:href="Question! $id">
+								<img height="150" src="{$basePath}/img/animals/{$item['img']}">
+							</a>
+						{/first}
+						<a class="col-sm-3 ajax img-link" n:href="Question! $id">
+							<img height="150" src="{$basePath}/img/animals/{$option['img']}">
+						</a>
+					{/foreach}
 				</div>
 			{/snippet}
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-sm-3">
-			<img class="img-responsive answers" src="">
 		</div>
 	</div>
 </div>
