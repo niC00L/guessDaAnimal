@@ -1,0 +1,30 @@
+{* Latte template *}
+
+{block content}
+<div class="container">
+	Tu bude test </br>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<img class="img-responsive question" src="">
+			{snippet ajaxChange}				
+				<div class="row">
+					{foreach $allItems as $item}
+						<img height="300" src="{$basePath}/img/animals/{$item['img']}">
+					{/foreach}
+				</div>
+				<div class="row">
+					<a class="col-sm-3 ajax" n:href="Question! $id">
+						<img height="150" src="{$basePath}/img/animals/{$item['img']}">
+					</a>
+				</div>
+			{/snippet}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-3">
+			<img class="img-responsive answers" src="">
+		</div>
+	</div>
+</div>

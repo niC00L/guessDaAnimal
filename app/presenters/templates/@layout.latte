@@ -7,15 +7,21 @@
 	<title>{ifset title}{include title|striptags} | {/ifset}Nette Web</title>
 
 	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+	<link rel="stylesheet" href="{$basePath}/css/main.css">
+	<link rel="stylesheet" href="{$basePath}/css/bootstrap/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="{$basePath}/js/jquery.cookie.js"></script>
+	<script src="{$basePath}/js/nette.ajax.js"></script>
+	<script src="{$basePath}/js/main.js"></script>
+	<script src="//nette.github.io/resources/js/netteForms.min.js"></script>
 </head>
 
 <body>
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
-
+	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>	
+	
 	{include content}
 
-	{block scripts}
-	<script src="//nette.github.io/resources/js/netteForms.min.js"></script>
+	{block scripts}	
 	{/block}
 </body>
 </html>
