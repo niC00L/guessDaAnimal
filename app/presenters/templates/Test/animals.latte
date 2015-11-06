@@ -1,31 +1,46 @@
-{* Latte template *}
-
 {block content}
-<div class="container">
-	Tu bude test </br>
 
-	<div class="row">
-		<div class="col-sm-6">
-			<img class="img-responsive question" src="">
-			{snippet ajaxChange}				
-				<div class="row">
-					{foreach $allItems as $item}
-						<img height="300" src="{$basePath}/img/animals/{$item['img']}">
-					{/foreach}
-				</div>
-				<div class="row">
-					{foreach $options as $option}
-						{first}
-							<a class="col-sm-3 ajax img-link" n:href="Question! $id">
-								<img height="150" src="{$basePath}/img/animals/{$item['img']}">
-							</a>
-						{/first}
-						<a class="col-sm-3 ajax img-link" n:href="Question! $id">
-							<img height="150" src="{$basePath}/img/animals/{$option['img']}">
-						</a>
-					{/foreach}
-				</div>
-			{/snippet}
+<script>
+	var correct = 0;
+	var wrong = 0;
+</script>
+
+<div class="container">
+	<h1>Test</h1>
+
+	{snippet ajaxChange}				
+		<div class="row">					
+			{foreach $quest as $item}
+				<img id="quest" height="300" src="{$basePath}/img/animals/{$item['img']}">
+				{dump $item}
+			{/foreach}
 		</div>
-	</div>
-</div>
+		<div class="row">
+			{foreach $options as $option}
+				{first}
+					<a class="col-sm-3 ajax img-link" n:href="Question! $id">
+						<img height="150" src="{$basePath}/img/animals/{$item['img']}">
+					</a>
+				{/first}
+				<a class="col-sm-3 ajax img-link" n:href="Question! $id">
+					<img height="150" src="{$basePath}/img/animals/{$option['img']}">
+				</a>
+			{/foreach}
+		</div>
+		<script>
+			$(function () {
+				$('.ajax').click(function () {
+					src = $(this).find('img').attr('src');
+					if (src === $('#quest').attr('src')) {
+						correct += 1;
+					}
+					else {
+						wrong += 1;
+					}
+					console.log(correct);
+					console.log(wrong);
+				})
+			});
+		</script>
+	{/snippet}
+
