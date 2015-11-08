@@ -21,6 +21,17 @@
                             function () {
                                 $('#ajax-content').hide();
                                 $('#non-ajax').show();
+
+                                $.nette.ajax({
+                                    type: 'post',
+                                    url: {link addResult!},
+                                    data: {
+                                        'name': $('#name').val(),
+                                        'correct': $('#correct').text(),
+                                        'wrong': $('#wrong').text(),
+                                        'time': $('#startTime').val()
+                                    },
+                                });
                             }
                     , 1000);
                 }

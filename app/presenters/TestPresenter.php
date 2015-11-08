@@ -3,7 +3,8 @@
 namespace App\Presenters;
 
 use Nette,
-    App\Model;
+    App\Model, 
+    Nette\Application\UI\Form;
 
 class TestPresenter extends BasePresenter {
 
@@ -26,22 +27,22 @@ class TestPresenter extends BasePresenter {
         }
         $this->ajax = $this->isAjax();
     }
+    
+    public function handleAddResult($name, $correct, $wrong, $time) {
+        $values = array(
+            'name' => $name,
+            'correct_ans' => $correct,
+            'wrong_ans' => $wrong,
+            'time' => $time
+        );
+        $this->db->table('answers')->insert($values);
+    }
 
     public function renderAnimals() {
-//        if ($this->quest === NULL) {
-//            $this->quest = $this->db->table('animals')->order('RAND()')->limit(1)->fetchAll();
-//            foreach ($this->quest as $a) {
-//                $this->id = $a['id'];
-//            }
-//        }
-//        if ($this->options === NULL) {
-//            $options = $this->db->table('animals')->limit(3)->order('RAND()')->where('NOT id', $this->id)->fetchAll();
-//            $this->options = array_merge($this->quest, $options);
-//            shuffle($this->options);
-//        }
         $this->template->options = $this->options;
         $this->template->quest = $this->quest;
         $this->template->ajax = $this->ajax;
+        $this->template->names = $this->db->table('answers')->select('name')->fetchAll();
     }
 
     public function actionShowResults() {
