@@ -3,7 +3,7 @@
 namespace App\Presenters;
 
 use Nette,
-    App\Model, 
+    App\Model,
     Nette\Application\UI\Form;
 
 class TestPresenter extends BasePresenter {
@@ -27,7 +27,7 @@ class TestPresenter extends BasePresenter {
         }
         $this->ajax = $this->isAjax();
     }
-    
+
     public function handleAddResult($name, $correct, $wrong, $time) {
         $values = array(
             'name' => $name,
@@ -45,8 +45,7 @@ class TestPresenter extends BasePresenter {
         $this->template->names = $this->db->table('answers')->select('name')->fetchAll();
     }
 
-    public function actionShowResults() {
-        
+    public function renderShow() {
+        $this->template->values = $this->db->table('answers')->fetchAll();
     }
-
 }

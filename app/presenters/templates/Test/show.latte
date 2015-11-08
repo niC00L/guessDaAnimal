@@ -1,0 +1,20 @@
+{block content}
+<h1>Prehľad</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>Meno</th>
+        <th>Správne odpovede</th>
+        <th>Nesprávne odpovede</th>
+        <th>Čas</th>
+        <th>Datum</th>
+    </tr>
+    {foreach $values as $val}
+        <tr>
+            <td>{$val->name}</td>
+            <td>{$val->correct_ans}</td>
+            <td>{$val->wrong_ans}</td>
+            <td>{$val->time|date:'%M:%S'}</td>
+            <td>{$val->date|date:'%d.%m.%Y'}</td>
+        </tr>
+    {/foreach}
+</table>
