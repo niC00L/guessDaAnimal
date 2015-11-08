@@ -23,47 +23,45 @@
     });
 </script>
 
-<div class="container">
-    <h1>Test</h1>
+<h1>Test</h1>
 
-    <input id="startTime" type='number' pattern="[0-9]*" step="10" value="30" />
-    <div id="timer"></div>
-    {snippet ajaxChange}	
-        {if $ajax}
-            <div class="row">					
-                {foreach $quest as $item}
-                    <img id="quest" height="300" src="{$basePath}/img/animals/{$item['img']}">
-                {/foreach}
-            </div>
-            <div class="row">
-                {foreach $options as $option}
-                    <a class="col-sm-3 ajax img-link" n:href="Question!">
-                        <img height="150" src="{$basePath}/img/animals/{$option['img']}">
-                    </a>
-                {/foreach}
-            </div>
-            <script>
-                $(function () {
-                    $('.ajax').click(function () {
-                        src = $(this).find('img').attr('src');
-                        if (src === $('#quest').attr('src')) {
-                            correct += 1;
-                            $(this).find('img').css('border-color', 'green');
-                        }
-                        else {
-                            wrong += 1;
-                            $(this).find('img').css('border-color', 'red');
-                        }
-                        console.log(correct);
-                        console.log(wrong);
-                    })
-                });
-            </script>
-        {else}
-            <blockquote>
-                Zadajte čas v sekundách a spustite test.
-            </blockquote>
-            <a class="ajax" id="start-timer" n:href="Question!">Spustit test</a>
-        {/if}
-    {/snippet}       
-</div>
+<input id="startTime" type='number' pattern="[0-9]*" step="10" value="30" />
+<div id="timer"></div>
+{snippet ajaxChange}	
+    {if $ajax}
+        <div class="row">					
+            {foreach $quest as $item}
+                <img id="quest" height="300" src="{$basePath}/img/animals/black/{$item['img']}" data-img="{$item['id']}">
+            {/foreach}
+        </div>
+        <div class="row">
+            {foreach $options as $option}
+                <a class="col-sm-3 ajax img-link" n:href="Question!">
+                    <img class="img-responsive" src="{$basePath}/img/animals/{$option['img']}" data-img="{$option['id']}">
+                </a>
+            {/foreach}
+        </div>
+        <script>
+            $(function () {
+                $('.ajax').click(function () {
+                    ans = $(this).find('img').data('img');
+                    if (ans === $('#quest').data('img')) {
+                        correct += 1;
+                        $(this).find('img').css('border-color', 'green');
+                    }
+                    else {
+                        wrong += 1;
+                        $(this).find('img').css('border-color', 'red');
+                    }
+                    console.log(correct);
+                    console.log(wrong);
+                })
+            });
+        </script>
+    {else}
+        <blockquote>
+            Zadaj čas v sekundách a spusti test.
+        </blockquote>
+        <a class="ajax" id="start-timer" n:href="Question!">Spustiť test</a>
+    {/if}
+{/snippet}       
