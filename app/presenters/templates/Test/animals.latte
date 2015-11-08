@@ -5,6 +5,7 @@
     var wrong = 0;
 
     $(function () {
+        $('#non-ajax').hide();
         var clock = new $('#timer').FlipClock({
             countdown: true,
             clockFace: 'MinuteCounter',
@@ -15,53 +16,87 @@
             var time = parseInt($('#startTime').val());
             clock.setTime(time);
             clock.start(function () {
-                console.log($.Callbacks());
+                if (!clock.running) {
+                    setTimeout(
+                            function () {
+                                $('#ajax-content').hide();
+                                $('#non-ajax').show();
+                            }
+                    , 1000);
+                }
             });
-            $('#startTime').hide();
+            $('.hide-after').hide();
             $('#timer').show();
         });
-    });
-</script>
+        $('#name').focus().keyup(function (event) {
+            var names = [
+    {foreach $names as $name} {$name['name']} {sep},{/sep} {/foreach}
+            ];
+            var name = $('#name').val();
+            if ($.inArray(name, names) === -1) {
+                msg = '';
+                $('#start-timer').removeClass('disabled');
+            } else {
+                msg = 'Meno je zabrané';
+                $('#start-timer').addClass('disabled');
+            }
+            $('#free').html(msg);
+        });
+    });</script>
 
 <h1>Test</h1>
-
-<input id="startTime" type='number' pattern="[0-9]*" step="10" value="30" />
+<div class="row hide-after">
+    <div class="col-sm-4 col-sm-offset-4">
+        <label for="name">Napiš svoje meno</label><input class="form-control" id="name" name="name" type="text" placeholder="Meno"><span id="free"></span>
+    </div>    
+</div>
+<div class="col-sm-3 hide-after">
+    <input class="form-control" id="startTime" type='number' pattern="[0-9]*" step="10" value="30" />
+</div>
 <div id="timer"></div>
-{snippet ajaxChange}	
-    {if $ajax}
-        <div class="row">					
-            {foreach $quest as $item}
-                <img id="quest" height="300" src="{$basePath}/img/animals/black/{$item['img']}" data-img="{$item['id']}">
-            {/foreach}
-        </div>
-        <div class="row">
-            {foreach $options as $option}
-                <a class="col-sm-3 ajax img-link" n:href="Question!">
-                    <img class="img-responsive" src="{$basePath}/img/animals/{$option['img']}" data-img="{$option['id']}">
-                </a>
-            {/foreach}
-        </div>
-        <script>
-            $(function () {
-                $('.ajax').click(function () {
-                    ans = $(this).find('img').data('img');
-                    if (ans === $('#quest').data('img')) {
-                        correct += 1;
-                        $(this).find('img').css('border-color', 'green');
-                    }
-                    else {
-                        wrong += 1;
-                        $(this).find('img').css('border-color', 'red');
-                    }
-                    console.log(correct);
-                    console.log(wrong);
-                })
-            });
-        </script>
-    {else}
-        <blockquote>
-            Zadaj čas v sekundách a spusti test.
-        </blockquote>
-        <a class="ajax" id="start-timer" n:href="Question!">Spustiť test</a>
-    {/if}
-{/snippet}       
+<div id="ajax-content">
+    {snippet ajaxChange}	
+        {if $ajax}
+            <div class="row">					
+                {foreach $quest as $item}
+                    <img id="quest" height="300" src="{$basePath}/img/animals/black/{$item['img']}" data-img="{$item['id']}">
+                {/foreach}
+            </div>
+            <div class="row">
+                {foreach $options as $option}
+                    <a class="col-sm-3 ajax img-link" n:href="Question!">
+                        <img class="img-responsive" src="{$basePath}/img/animals/{$option['img']}" data-img="{$option['id']}">
+                    </a>
+                {/foreach}
+            </div>
+            <script>
+                $(function () {
+                    $('.ajax').click(function () {
+                        ans = $(this).find('img').data('img');
+                        if (ans === $('#quest').data('img')) {
+                            correct += 1;
+                            $(this).find('img').css('border-color', 'green');
+                        }
+                        else {
+                            wrong += 1;
+                            $(this).find('img').css('border-color', 'red');
+                        }
+                        $('#correct').html(correct);
+                        $('#wrong').html(wrong);
+                    })
+                });
+            </script>
+        {else}
+            <blockquote class="col-sm-6">
+                Zadaj čas v sekundách a spusti test.
+            </blockquote>
+            <div class="col-sm-3">
+                <a class="ajax btn btn-primary disabled" id="start-timer" n:href="Question!">Spustiť test</a>
+            </div>
+        {/if}
+    {/snippet}  
+</div>
+<div id="non-ajax">
+    <p>Spravne: <span id="correct"></span></p>
+    <p>Nespravne: <span id="wrong"></span></p>
+</div>
