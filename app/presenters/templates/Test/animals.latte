@@ -39,21 +39,21 @@
             $('.hide-after').hide();
             $('#timer').show();
         });
-        $('#name').focus().keyup(function (event) {
-            var names = [
-    {foreach $names as $name} {$name['name']} {sep},{/sep} {/foreach}
-            ];
-            var name = $('#name').val();
-            if ($.inArray(name, names) === -1) {
-                msg = '';
-                $('#start-timer').removeClass('disabled');
-            } else {
-                msg = 'Meno je zabrané';
-                $('#start-timer').addClass('disabled');
-            }
-            $('#free').html(msg);
-        });
-    });</script>
+//        $('#name').focus().keyup(function (event) {
+//            var names = [
+//    {*foreach $names as $name*} {*$name['name']*} {*sep*},{*/sep*} {*/foreach*}
+//            ];
+//            var name = $('#name').val();
+//            if ($.inArray(name, names) === -1) {
+//                msg = '';
+//                $('#start-timer').removeClass('disabled');
+//            } else {
+//                msg = 'Meno je použité. Si to naozaj ty?';
+//            }
+//            $('#free').html(msg);
+//        });
+    });
+</script>
 
 <h1>Test</h1>
 <div class="row hide-after">
@@ -102,7 +102,7 @@
                 Zadaj čas v sekundách a spusti test.
             </blockquote>
             <div class="col-sm-3">
-                <a class="ajax btn btn-primary disabled" id="start-timer" n:href="Question!">Spustiť test</a>
+                <a class="ajax btn btn-primary" id="start-timer" n:href="Question!">Spustiť test</a>
             </div>
         {/if}
     {/snippet}  
