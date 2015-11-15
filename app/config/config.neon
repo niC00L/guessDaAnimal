@@ -19,4 +19,8 @@ session:
 
 
 services:
-	router: App\RouterFactory::createRouter
+	router: App\RouterFactory::createRouter        
+
+security:
+    users:
+        unicorn: rainbow
