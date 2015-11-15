@@ -25,12 +25,9 @@
         <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>	
 
         <div class="container">
-            {include content}
-            <div class="row">
-                <div id='tickets'></div>
-            </div>
+            {include content}            
         </div>        
-        {block scripts}	
+        {block scripts}	      
         {/block}
     </body>
 </html>

@@ -1,12 +1,35 @@
-{* This is the welcome page, you can delete it *}
-
 {block content}
-<h1 n:block=title>Otestuj sa!</h1>
-<p>
-    Na tejto stránke nájdeš testy na rôzne veci. Zatiaľ sú tu len zvieratká, no časom tu toho určite pribudne viac.
-    Môžeš sa pretekať s kamarátmi, kto odpovedal správne na viac otázok, alebo si len tak precvičiť svoje reflexy. 
-    Nie, nie je to len pre malé deti. Stavím sa, že aj Ty sa pomýliš.  Tak veľa štastia.
-</p>
-<a class="btn btn-primary" n:href="Test:animals">Test zvieratká</a>	<a class="btn btn-success" n:href="Test:show">Zobrazenie výsledkov</a>
-<p> Alebo si môžeš pomocou Pascalu vypísať číslo z <a href="{$basePath}/lazarus/project1.exe">Fibonacciho postupnosti</a></p>
 
+<div class="col-sm-12">
+    <div class="page-header">
+        <h1 n:block=title>Otestuj sa!</h1>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            Na tejto stránke nájdeš testy na rôzne veci. Zatiaľ sú tu len zvieratká, no časom tu toho určite pribudne viac.
+            Môžeš sa pretekať s kamarátmi, kto odpovedal správne na viac otázok, alebo si len tak precvičiť svoje reflexy. 
+            Nie, nie je to len pre malé deti. Stavím sa, že aj Ty sa pomýliš.  Tak veľa štastia.
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-primary" n:href="Test:animals">Test zvieratká</a>	<a class="btn btn-success" n:href="Test:show">Zobrazenie výsledkov</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-6">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>Taktiež si môžeš pozrieť koľko je zvyšných lístkov na koncert Imagine Dragons v Prahe</p>
+            <div id='tickets'></div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-6">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p> Alebo si môžeš pomocou Pascalu vypísať číslo z <a href="{$basePath}/lazarus/project1.exe">Fibonacciho postupnosti</a></p>
+        </div>
+    </div>
+</div>
+
+{include '../preload.latte'}
