@@ -43,6 +43,7 @@ class TestPresenter extends BasePresenter {
         $this->template->quest = $this->quest;
         $this->template->ajax = $this->ajax;
         $this->template->names = $this->db->table('answers')->select('name')->fetchAll();
+        $this->template->imgs = $this->db->table('animals')->select('img, img_black')->fetchAll();
     }
 
     public function renderShow() {

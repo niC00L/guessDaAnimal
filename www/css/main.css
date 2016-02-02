@@ -25,6 +25,7 @@ a {
     border: 3px solid transparent;
     background: white;
     transition: all, .2s;
+    margin: auto;
 }
 
 .img-link:hover img, .img-link:active img, .img-link:focus img {
@@ -67,4 +68,14 @@ h2 {
 img { 
     border: none; 
     margin: 0 0 1em 3em; 
+}
+
+.margin-bottom {margin-bottom: 30px;}
+
+.margin-top {margin-top: 30px;}
+
+#timer {
+    width: 310px;
+    margin-left: auto;
+    margin-right: auto;
 }
